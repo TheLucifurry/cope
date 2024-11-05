@@ -1,0 +1,33 @@
+{
+  "name": "cope",
+  "version": "1.0.0",
+  "description": "Simple error handling util, inspired by Golang solution",
+  "module": "index.js",
+  "type": "module",
+  "files": ["index.d.ts", "index.js"],
+  "exports": {
+    "./*": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    }
+  },
+  "author": "Lucifurry",
+  "license": "ISC",
+  "repository": "https://github.com/TheLucifurry/cope",
+  "scripts": {
+    "dev": "bun test --watch",
+    "build": "tsc index.ts --noCheck && bun build ./index.ts --outdir ."
+  },
+  "keywords": [
+    "error",
+    "handling",
+    "cope"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
