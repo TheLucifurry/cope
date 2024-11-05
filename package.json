@@ -18,6 +18,7 @@
   "author": "Lucifurry",
   "license": "ISC",
   "repository": "https://github.com/TheLucifurry/cope",
+  "homepage": "https://github.com/TheLucifurry/cope#readme",
   "scripts": {
     "dev": "bun test --watch",
     "build": "tsc index.ts --noCheck && bun build ./index.ts --outdir .",
