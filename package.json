@@ -1,6 +1,6 @@
 {
   "name": "cope",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple error handling util, inspired by Golang solution",
   "module": "index.js",
   "type": "module",
