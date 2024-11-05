@@ -20,7 +20,10 @@
   "repository": "https://github.com/TheLucifurry/cope",
   "scripts": {
     "dev": "bun test --watch",
-    "build": "tsc index.ts --noCheck && bun build ./index.ts --outdir ."
+    "build": "tsc index.ts --noCheck && bun build ./index.ts --outdir .",
+    "new-version:patch": "npm version patch",
+    "new-version:minor": "npm version minor",
+    "publish": "npm publish"
   },
   "keywords": [
     "error",
