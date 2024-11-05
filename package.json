@@ -1,10 +1,13 @@
 {
   "name": "cope",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple error handling util, inspired by Golang solution",
   "module": "index.js",
   "type": "module",
-  "files": ["index.d.ts", "index.js"],
+  "files": [
+    "index.d.ts",
+    "index.js"
+  ],
   "exports": {
     "./*": {
       "types": "./index.d.ts",
