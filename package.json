@@ -22,9 +22,9 @@
   "scripts": {
     "dev": "bun test --watch",
     "build": "tsc index.ts --noCheck && bun build ./index.ts --outdir .",
-    "new-version:patch": "npm version patch",
-    "new-version:minor": "npm version minor",
-    "publish": "npm publish"
+    "package:new-patch": "npm version patch",
+    "package:new-minor": "npm version minor",
+    "package:publish": "npm publish"
   },
   "keywords": [
     "error",
