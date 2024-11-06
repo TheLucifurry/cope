@@ -1,6 +1,4 @@
-
-type FnNullary = () => any
-type FnAsyncNullary = () => Promise<any>
+type FnMaybeAsync = (...params: any[]) => any | Promise<any>
 
 export type CopeOk<T> = [T, undefined]
 export type CopeErr<E extends Error> = [undefined, E]
@@ -11,34 +9,27 @@ export const err = <E extends Error>(error: E): CopeErr<E> => [undefined, error]
 
 /**
  * Golang-like error handling util
- *
- * @example ```ts // Basic usage
- * const [result, error] = cope(() => JSON.parse('{"a": 1}'))
+ * @see Docs https://github.com/TheLucifurry/cope
+ * @example ```ts
+ * const [result = 'default', error] = cope(() => JSON.parse('{"a": 1}'))
  * if (error) {
  *   // process error
  *   return
  * }
  * // process result
  * ```
- *
- * @example ```ts // With default value
- * const [result = 'default value', syncParseErr] = cope(...)
- * result // is always defined
- * ```
- *
- * @example ```ts // ignore insignificant error
- * // prepare executions
- * cope(()=>{ window.scrollTo(someElement.offsetHeight) })
- * // guaranteed executions
- * ```
  */
 export function cope<
   Throws extends Error = Error,
-  Executor extends FnNullary | FnAsyncNullary = FnNullary | FnAsyncNullary,
+  Executor extends FnMaybeAsync = FnMaybeAsync,
   Result extends ReturnType<Executor> = ReturnType<Executor>,
 >(
-  executor: Executor
-): Result extends Promise<any> ? Promise<CopeResult<Awaited<Result>, Throws>> : CopeResult<Result, Throws> {
+  executor: Executor,
+): (
+  Result extends Promise<any>
+    ? Promise<CopeResult<Awaited<Result>, Throws>>
+    : CopeResult<Result, Throws>
+) {
   try {
     const result = executor()
     // @ts-expect-error TCS can't separate two result cases
