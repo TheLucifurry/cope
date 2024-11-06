@@ -36,14 +36,16 @@ export function cope<
   Throws extends Error = Error,
   Executor extends FnNullary | FnAsyncNullary = FnNullary | FnAsyncNullary,
   Result extends ReturnType<Executor> = ReturnType<Executor>,
->(executor: Executor): Result extends Promise<any> ? Promise<CopeResult<Awaited<Result>, Throws>> : CopeResult<Result, Throws> {
+>(
+  executor: Executor
+): Result extends Promise<any> ? Promise<CopeResult<Awaited<Result>, Throws>> : CopeResult<Result, Throws> {
   try {
     const result = executor()
-    // @ts-expect-error Complex type flow
+    // @ts-expect-error TCS can't separate two result cases
     return result instanceof Promise ? result.then(ok, err) : ok(result)
   }
   catch (error) {
-    // @ts-expect-error Complex type flow
+    // @ts-expect-error TCS can't separate two result cases
     return err(error as Throws)
   }
 }
