@@ -24,7 +24,7 @@
     "build": "tsc index.ts --noCheck && bun build ./index.ts --outdir .",
     "package:new-patch": "npm version patch",
     "package:new-minor": "npm version minor",
-    "package:publish": "npm publish"
+    "package:publish": "git push && npm publish"
   },
   "keywords": [
     "error",
